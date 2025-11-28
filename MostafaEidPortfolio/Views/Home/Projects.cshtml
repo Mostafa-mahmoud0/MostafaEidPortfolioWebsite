@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MostafaEidPortfolio.Models.Project>
+@{
+    ViewData["Title"] = "My Projects";
+}
+
+<!-- The 'mt-4' class adds the top margin -->
+<div class="container mt-4">
+    <h2>My Projects</h2>
+    <p>A gallery of applications and projects I have worked on.</p>
+    <hr />
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var project in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@project.ImageUrl" class="card-img-top project-image" alt="@project.Title" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@project.Title</h5>
+                            <p class="card-text flex-grow-1">@project.Description</p>
+                            <p class="card-text"><small class="text-muted">Tech: @project.TechnologiesUsed</small></p>
+                            <div class="mt-auto">
+                                @if (!string.IsNullOrEmpty(project.ProjectUrl))
+                                {
+                                    <a href="@project.ProjectUrl" class="btn btn-primary" target="_blank">View Project</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p>No projects to display yet. Check back soon!</p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+@{
+    var featuredProjects = ViewBag.FeaturedProjects as IEnumerable<MostafaEidPortfolio.Models.Project>;
+}
+
+<!-- Hero Section - No top margin container -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="display-4">Welcome, I'm Moustafa Mahmoud </h1>
+        <p class="lead">A passionate Backend Developer specializing in the .NET stack.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Projects" role="button">View My Work</a>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+@if (featuredProjects != null && featuredProjects.Any())
+{
+    <section class="container my-5">
+        <h2 class="section-heading">Featured Projects</h2>
+        <div class="row">
+            @foreach (var project in featuredProjects)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@project.Title</h5>
+                            <p class="card-text flex-grow-1">@project.Description</p>
+                            <a href="@project.ProjectUrl" class="btn btn-outline-primary" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mt-4">
+            <a asp-controller="Home" asp-action="Projects" class="btn btn-primary">View All Projects</a>
+        </div>
+    </section>
+}
+
+<!-- Skills/Highlights Section -->
+<section class="container my-5">
+    <h2 class="section-heading">What I Do</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 bg-light">
+                <div class="card-body">
+                    <i class="fas fa-code service-icon"></i>
+                    <h4>Clean Code</h4>
+                    <p>I write maintainable, scalable, and efficient code following best practices like OOP and SOLID principles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 bg-light">
+                <div class="card-body">
+                    <i class="fas fa-database service-icon"></i>
+                    <h4>Database Expert</h4>
+                    <p>Proficient in SQL Server and Entity Framework Core for designing and managing robust data layers.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 bg-light">
+                <div class="card-body">
+                    <i class="fas fa-rocket service-icon"></i>
+                    <h4>Problem Solver</h4>
+                    <p>Strong foundation in Data Structures and Algorithms to tackle complex challenges effectively.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+﻿@model MostafaEidPortfolio.Models.Project
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<!-- Breadcrumb for better navigation -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Projects">Projects</a></li>
+        <li class="breadcrumb-item active">@Model.Title</li>
+    </ol>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@Model.Title</h1>
+            <hr />
+            <img src="@Model.ImageUrl" class="img-fluid rounded shadow mb-4" alt="@Model.Title" />
+
+            <h3>Description</h3>
+            <p>@Model.Description</p>
+
+            <h3>Technologies Used</h3>
+            <p>@Model.TechnologiesUsed</p>
+
+            @if (!string.IsNullOrEmpty(Model.ProjectUrl))
+            {
+                <a href="@Model.ProjectUrl" class="btn btn-primary mt-3" target="_blank">
+                    <i class="fas fa-external-link-alt me-2"></i>View Live Project / Code
+                </a>
+            }
+        </div>
+        <div class="col-md-4">
+            <h3>Project Details</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Project ID:</strong> @Model.Id</li>
+                <!-- You can add more details here if you expand your Project model -->
+                <!-- For example: <li class="list-group-item"><strong>Date:</strong> @Model.CreatedDate.ToShortDateString()</li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="mt-4">
+        <a asp-controller="Home" asp-action="Projects" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Projects
+        </a>
+    </div>
+</div>

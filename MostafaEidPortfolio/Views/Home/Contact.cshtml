@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Contact Me";
+}
+
+<!-- The 'mt-4' class adds the top margin -->
+<div class="container mt-4">
+    <h2>Let's Get In Touch</h2>
+    <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat. Feel free to reach out!</p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Connect with me</h4>
+            <p>Choose your preferred platform to connect:</p>
+            <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="https://github.com/Mostafa-mahmoud0" class="contact-page-icon" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/Mostafa-mahmoud0" class="text-decoration-none" target="_blank">GitHub</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="https://www.linkedin.com/in/moustafa-mahmoud-eid-840526337" class="contact-page-icon" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/moustafa-mahmoud-eid-840526337" class="text-decoration-none" target="_blank">LinkedIn</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="https://www.facebook.com/share/1H4BzJuE51/" class="contact-page-icon" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.facebook.com/share/1H4BzJuE51/" class="text-decoration-none" target="_blank">Facebook</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="https://www.instagram.com/mostafa_mahmoud.3id" class="contact-page-icon" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/mostafa_mahmoud.3id" class="text-decoration-none" target="_blank">Instagram</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="https://wa.me/201126373089" class="contact-page-icon" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/201126373089" class="text-decoration-none" target="_blank">WhatsApp</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="tel:+201126373089" class="contact-page-icon" title="Phone"><i class="fas fa-phone"></i></a>
+                    <a href="tel:+201126373089" class="text-decoration-none">Phone / Mobile</a>
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                    <a href="mailto:mm6006@fayoum.edu.eg" class="contact-page-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:mm6006@fayoum.edu.eg" class="text-decoration-none">Email</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h4>Send a Message</h4>
+
+            <form id="contact-form">
+                <div class="mb-3">
+                    <label for="from_name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="from_name" name="from_name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="from_email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="from_email" name="from_email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="3" placeholder="Enter your message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <p id="form-status" class="mt-3"></p> <!-- To show success/error messages -->
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTANT: Use the stable EmailJS CDN link -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+    // Wait for the window to load to ensure all scripts are ready
+    window.onload = function() {
+        // Check if the emailjs object is available
+        if (window.emailjs) {
+            emailjs.init("BzVweQoTM0tXgctD4"); // Your Public Key
+        } else {
+            console.error("EmailJS failed to load.");
+        }
+    };
+</script>
+
+<script type="text/javascript">
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const serviceID = "service_logh8na"; // Your Service ID
+        const templateID = "template_vxhcqof"; // Your Template ID
+
+        // Show loading message
+        formStatus.innerHTML = '<span class="text-info">Sending...</span>';
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(function() {
+                // Show success message
+                formStatus.innerHTML = '<span class="text-success">Message sent successfully!</span>';
+                contactForm.reset(); // Clear the form
+            }, function(error) {
+                // Show error message
+                formStatus.innerHTML = '<span class="text-danger">Failed to send message. Please try again.</span>';
+                console.error('Failed...', error);
+            });
+    });
+</script>
