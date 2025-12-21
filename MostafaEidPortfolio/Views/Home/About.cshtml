@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IEnumerable<MostafaEidPortfolio.Models.Course>
+
+@{
     ViewData["Title"] = "About Me";
 }
 
-<!-- The 'mt-4' class adds the top margin -->
 <div class="container mt-4">
     <h2>About Me</h2>
     <hr />
@@ -35,9 +36,38 @@
                     </ul>
                 </div>
             </div>
+
+            <h3 class="mt-5">Courses & Certifications</h3>
+
+            @if (Model != null)
+            {
+                <div class="row">
+                    @foreach (var course in Model)
+                    {
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">@course.Title</h5>
+                                    <p class="card-text">@course.Description</p>
+
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-info" role="progressbar"
+                                             style="width: @(course.Progress * 100)%;"
+                                             aria-valuenow="@course.Progress"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
         </div>
         <div class="col-md-4">
-            <img src="~/images/projects/Me.jpg" class="img-fluid rounded-circle shadow" alt="Profile Picture of Mostafa Mahmoud">
+            <!--   <img src="~/images/projects/Me.jpg" class="img-fluid rounded-circle shadow" alt="Profile Picture of Mostafa Mahmoud">-->
         </div>
     </div>
 </div>

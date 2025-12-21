@@ -12,6 +12,8 @@ namespace MostafaEidPortfolio.Data
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
 
         // HERE WE USE FLUENT API INSTEAD OF DATA ANNOTATIONS
         protected override void OnModelCreating(ModelBuilder modelBuilder)
